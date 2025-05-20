@@ -33,7 +33,7 @@ score = 0
 #!ШРИФТ
 font.init()
 font1 = font.SysFont('Arial', 30)
-font2 = font.SysFont('Arial', 30)
+font2 = font.SysFont('Arial', 50)
 text_lose1 = font2.render('ИГРОК 1 ПРОИГРАЛ', 1, (170, 0, 0))
 text_lose2 = font2.render('ИГРОК 2 ПРОИГРАЛ', 1, (170, 0, 0))
 #TODO СОЗДАНИЕ ОКНА
@@ -85,14 +85,15 @@ while run != False:
             speed_x *= -1
             lose1 -= 1
         if lose1 == 0:
-            window.blit(text_lose1, (410, 340))
+            window.blit(text_lose1, (300, 340))
             finish = True
         if ball.rect.x > win_widht:
             speed_x *= -1
             lose2 -= 1
         if lose2 == 0:
-            window.blit(text_lose2, (410, 340))
+            window.blit(text_lose2, (300, 340))
             finish = True
+        display.update()
     else:
         finish = False
         ball.kill()
@@ -101,7 +102,7 @@ while run != False:
         time.delay(2000)
         ball = GameSprite('ball.png', 450, 240, 50, 50, 7)
                 
-            
+        
 
 
 
