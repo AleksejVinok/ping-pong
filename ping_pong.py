@@ -33,7 +33,9 @@ score = 0
 #!ШРИФТ
 font.init()
 font1 = font.SysFont('Arial', 30)
-font2 = font.SysFont('Arial', 80)
+font2 = font.SysFont('Arial', 30)
+text_lose1 = font2.render('ИГРОК 1 ПРОИГРАЛ', 1, (170, 0, 0))
+text_lose2 = font2.render('ИГРОК 2 ПРОИГРАЛ', 1, (170, 0, 0))
 #TODO СОЗДАНИЕ ОКНА
 win_widht = 1000 #ширина
 win_height = 700 #высота
@@ -62,9 +64,6 @@ while run != False:
         window.blit(text_life1, (10, 15))
         text_life2 = font1.render('Осталось жизней:' + str(lose2), 1, (0, 0, 0))
         window.blit(text_life2, (720, 15))
-        text_lose1 = font2.render('ИГРОК 1 ПРОИГРАЛ', 1, (170, 0, 0))
-        text_lose2 = font2.render('ИГРОК 2 ПРОИГРАЛ', 1, (170, 0, 0))
-        #Отрисовка
         racket1.update_right()
         racket2.update_left()
         racket1.reset()
@@ -85,23 +84,22 @@ while run != False:
         if ball.rect.x < 0:
             speed_x *= -1
             lose1 -= 1
-            if lose1 == 0:
-                window.blit(text_lose1, (410, 340))
-                time.delay(500)
-                finish = True
+        if lose1 == 0:
+            window.blit(text_lose1, (410, 340))
+            finish = True
         if ball.rect.x > win_widht:
             speed_x *= -1
             lose2 -= 1
-            if lose2 == 0:
-                window.blit(text_lose2, (410, 340))
-                time.delay(500)
-                finish = True
-        if finish == True:
-            del(ball)
-            lose1 = 3
-            lose2 = 3
-            time.delay(2000)
-            ball = GameSprite('ball.png', 450, 240, 50, 50, 7)
+        if lose2 == 0:
+            window.blit(text_lose2, (410, 340))
+            finish = True
+    else:
+        finish = False
+        ball.kill()
+        lose1 = 3
+        lose2 = 3
+        time.delay(2000)
+        ball = GameSprite('ball.png', 450, 240, 50, 50, 7)
                 
             
 
